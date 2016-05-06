@@ -15,7 +15,7 @@ class CreateDonatorTable extends Migration
         Schema::create('donators', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->float('account');
+            $table->float('amount');
             $table->integer('editor')->nullable(false);
             $table->timestamps();
         });
