@@ -1,5 +1,7 @@
 <?php
 
+use Symfony\Component\VarDumper\Caster\DoctrineCaster;
+
 return [
 
     /*
