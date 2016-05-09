@@ -17,6 +17,13 @@ class SearchController extends Controller
 
     public function index()
     {
-        return "Fuck you liar";
+        return view('search.index');
+    }
+
+    public function show(Request $request)
+    {
+        $key = $request->get('key');
+
+        return $this->liar->SearchByInfo($key);
     }
 }
