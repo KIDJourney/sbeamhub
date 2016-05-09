@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 /**
  * App\Model\Liar
@@ -32,4 +33,17 @@ use Illuminate\Database\Eloquent\Model;
 class Liar extends Model
 {
     //
+
+    public function searchByInfo($info,$limit=20)
+    {
+        $result = DB::table("liars")->where("tiebaid", "like", "%$info%")
+            ->orWhere("tiebaid", "like", "%$info%")
+            ->orWhere("steamnick", "like", "%$info%")
+            ->orWhere("steamid", "like", "%$info%")
+            ->orWhere("taobaoid", "like", "%$info%")
+            ->orWhere("alipayaccount", "like", "%$info%")
+            ->orWhere("reason", "like", "%$info%")->paginate($limit);
+
+        return $result;
+    }
 }
