@@ -15,8 +15,13 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable(false)->index();
+            $table->string('steam_id',64)->default(NULL)->index();
+            $table->string('img_url');
             $table->string('password');
+            $table->boolean('is_verified')->default(false);
+            $table->boolean('is_admin')->default(false);
+            $table->boolean('is_banned')->default(false)->index();
             $table->rememberToken();
             $table->timestamps();
         });
