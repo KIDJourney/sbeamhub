@@ -14,6 +14,12 @@ class Donator extends Model
 {
     //
 
+
+    public function addBy()
+    {
+        return $this->belongsTo('App\Model\User','editor');
+    }
+
     public function scopeRecent($query, $limit=20)
     {
         return $query->orderBy('created_at','desc')->paginate($limit);
