@@ -32,7 +32,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'img_url'
     ];
 
     /**
@@ -46,6 +46,11 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->isadmin == '1';
+        return $this->is_admin == '1';
+    }
+
+    public function reportedLiar()
+    {
+        return $this->hasMany('App\Model\Liar','editor');
     }
 }
