@@ -15,4 +15,12 @@ Route::get('/search/{key?}', 'SearchController@show');
 
 Route::get('/donator', "Admin\DonatorController@index");
 Route::get('/home', 'HomeController@index');
+
+Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::get('/', function () {
+        return "This is admin page";
+    });
+    Route::resource('liar', 'LiarController');
+});
+
 Route::auth();
