@@ -34,6 +34,10 @@ class Liar extends Model
 {
     //
 
+    protected $fillable = [
+        "tiebaid", "steamnick", "steamid", "taobaoid", "alipayaccount", "reason"
+    ];
+
     public function searchByInfo($info,$limit=20)
     {
         $result = DB::table("liars")->where("tiebaid", "like", "%$info%")
@@ -43,7 +47,11 @@ class Liar extends Model
             ->orWhere("taobaoid", "like", "%$info%")
             ->orWhere("alipayaccount", "like", "%$info%")
             ->orWhere("reason", "like", "%$info%")->paginate($limit);
-
         return $result;
+    }
+
+    public function addBy()
+    {
+        return $this->belongsTo('App\Model\User', 'editor');
     }
 }
