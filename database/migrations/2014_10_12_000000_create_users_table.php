@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_verified')->default(false);
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_banned')->default(false)->index();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -17,6 +17,7 @@ class CreateDonatorTable extends Migration
             $table->string('name');
             $table->float('amount');
             $table->integer('editor')->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

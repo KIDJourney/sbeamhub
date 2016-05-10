@@ -21,6 +21,7 @@ class CreateLiarsTable extends Migration
             $table->string('alipayaccount');
             $table->string('reason');
             $table->integer('editor')->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
