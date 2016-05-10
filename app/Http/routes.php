@@ -11,7 +11,8 @@
 |
 */
 Route::get('/', "SearchController@index");
-Route::get('/search/{key?}','SearchController@show');
+Route::get('/search/{key?}', 'SearchController@show');
 
+Route::get('/donator', "Admin\DonatorController@index");
 Route::get('/home', 'HomeController@index');
 Route::auth();
