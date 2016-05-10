@@ -15,16 +15,20 @@ class LiarSeeder extends Seeder
     {
         //
         $faker = Faker::create();
-        for($i = 0 ; $i < 100 ; $i ++){
-            $liar = new Liar();
-            $liar->steamid = $faker->uuid;
-            $liar->tiebaid = $faker->name;
-            $liar->steamnick = $faker->userName;
-            $liar->taobaoid = $faker->userName;
-            $liar->alipayaccount = $faker->email;
-            $liar->editor = 1;
-            $liar->reason = $faker->sentence;
-            $liar->save();
+        $data = [];
+
+        for ($i = 0 ; $i < 100 ; $i++){
+            $data[] = [
+                'tiebaid' => $faker->name,
+                'steamnick' => $faker->userName,
+                'steamid' => $faker->uuid,
+                'taobaoid' => $faker->userName,
+                'alipayaccount' => $faker->email,
+                'editor' => 1,
+                'reason' => $faker->sentence()
+            ];
         }
+
+        Liar::insert($data);
     }
 }
