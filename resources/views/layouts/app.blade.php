@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>SteamHub</title>
 
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
@@ -16,10 +16,6 @@
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     <style>
-        body {
-            font-family: 'Lato';
-        }
-
         .fa-btn {
             margin-right: 6px;
         }
@@ -39,15 +35,16 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
-                </a>
+                <a class="navbar-brand" href="{{ url('/') }}">SteamHub</a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li class="active"><a href="{{ url('/') }}">主页</a></li>
+                    <li class=""><a href="#">交易查询</a></li>
+                    <li class=""><a href="#">游戏推荐</a></li>
+                    <li class=""><a href="{{ url('/donation') }}">支持我们</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -55,7 +52,16 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <form class="navbar-form navbar-right in" method="POST" action="{{ url('/login') }}">
+                            <div class="form-group">
+                                <input name="email" class="col-md-2 form-control" type="text" placeholder="请输入您的邮箱"/>
+                            </div>
+                            <div class="form-group">
+                                <input name="password" class="col-md-2 form-control" type="password" placeholder="请输入密码"/>
+                            </div>
+                            <button class="btn btn-default" type="submit">登录</button>
+                            <a class="btn btn-default" href="{{ url('/register') }}">注册</a>
+                        </form>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
