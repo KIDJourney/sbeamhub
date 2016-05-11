@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Auth;
 class LiarController extends Controller
 {
     //
+
+    public function __construct(Request $request)
+    {
+        $this->validator = Validator::make($request->all(), [
+                'reason' => 'required',
+            ]
+        );
+    }
+
     public function index()
     {
         return Liar::all();
@@ -30,19 +39,14 @@ class LiarController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-                'reason' => 'required',
-            ]
-        );
-
-        if ($validator->fails()) {
+        if ($this->validator->fails()) {
             return action('Admin\LiarController@create')
-                ->withErrors($validator)
+                ->withErrors($this->validator)
                 ->withInput();
         }
 
         $liar = Liar::create($request->all());
-        return $liar->id;
+        return $liar;
     }
 
 
@@ -53,8 +57,16 @@ class LiarController extends Controller
 
     public function update(Request $request, Liar $liar)
     {
+        if ($this->validator->fails()) {
+            return action('Admin\LiarController@edit')
+                ->withErrors($this->validator)
+                ->withInput();
+        }
+
         $liar->update($request->all());
         $liar->editor = Auth::user()->id;
         $liar->save();
+
+        return $liar;
     }
 }
