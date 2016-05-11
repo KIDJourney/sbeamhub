@@ -1,0 +1,9 @@
+language: php
+
+php:
+	- 7.0
+
+before_script:
+    - "mysql -e 'create database `steamhub`;'"
+    - composer install -n --prefer-source
+    - php artisan migrate --seed -n
