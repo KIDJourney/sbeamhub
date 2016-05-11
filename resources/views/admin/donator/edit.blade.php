@@ -1,0 +1,1 @@
+@include('admin.donator.form_partial')
