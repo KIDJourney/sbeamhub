@@ -1,4 +1,6 @@
-# sbeamhub
+# sbeamhub 
+
+[![Build Status](https://travis-ci.org/KIDJourney/sbeamhub.svg?branch=master)](https://travis-ci.org/KIDJourney/sbeamhub)
 
 Your Cute steam hub !
 
