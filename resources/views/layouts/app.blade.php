@@ -52,6 +52,7 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <form class="navbar-form navbar-right in" method="POST" action="{{ url('/login') }}">
+                            {!! csrf_field() !!}
                             <div class="form-group">
                                 <input name="email" class="col-md-2 form-control" type="text" placeholder="请输入您的邮箱"/>
                             </div>
