@@ -14,14 +14,18 @@ class Donator extends Model
 {
     //
 
+    protected $fillable = [
+        'name', 'amount'
+    ];
+
 
     public function addBy()
     {
-        return $this->belongsTo('App\Model\User','editor');
+        return $this->belongsTo('App\Model\User', 'editor');
     }
 
-    public function scopeRecent($query, $limit=20)
+    public function scopeRecent($query, $limit = 20)
     {
-        return $query->orderBy('created_at','desc')->paginate($limit);
+        return $query->orderBy('created_at', 'desc')->paginate($limit);
     }
 }
