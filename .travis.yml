@@ -6,4 +6,5 @@ php:
 before_script:
     - "mysql -e 'create database `steamhub`;'"
     - composer install -n --prefer-source
+     - php artisan key:generate
     - php artisan migrate --seed -n
