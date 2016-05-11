@@ -33,7 +33,6 @@ class AuthTest extends TestCase
              ->type('mypassword', 'password')
              ->type('mypassword', 'password_confirmation')
              ->press('注册')
-             ->seePageIs('')
              ->see('Rokic_is_weirdo');
     }
     
