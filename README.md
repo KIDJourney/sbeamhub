@@ -7,8 +7,8 @@ Your Cute steam hub !
 
 - [X] Search function
 - [X] Donator List
-- [ ] Liar manage
-- [ ] Donator Manage
+- [X] Liar manage
+- [X] Donator Manage
 - [ ] on sale List (crawler)
 - [ ] Liar report
 - [ ] Steam Oauth
