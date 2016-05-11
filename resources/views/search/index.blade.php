@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <img class="center-block" src="{{ URL::asset('image/') }}SteamHub.png">
+    <img class="center-block" src="{{ URL::asset('image/SteamHub.png') }}">
     <div class="col-md-6 col-md-offset-3">
         {!! Form::open(['action' => 'SearchController@show','method'=>'GET']) !!}
         <div class="input-group">
