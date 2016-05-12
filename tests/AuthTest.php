@@ -36,7 +36,10 @@ class RegisterTest extends TestCase
              ->see('Rokic_is_weirdo');
         
         $this->visit('/logout');
-        
+    }
+    
+    public function testNameTooLong()        
+    {
         $this->visit('/register')
              ->type('Rokic_is_not_weirdo', 'name')
              ->type('kingdeadfish@qq.com', 'email')
@@ -44,7 +47,19 @@ class RegisterTest extends TestCase
              ->type('mypassword', 'password_confirmation')
              ->press('注册')
              ->seePageIs('/register')
-             ->see('该邮箱已被注册');
+             ->see('昵称过长');
+    }
+    
+    public function testOccupiedEmailAddress()
+    {
+        $this->visit('/register')
+             ->type('Rokic_is_not_weirdo', 'name')
+             ->type('kingdeadfish@qq.com', 'email')
+             ->type('mypassword', 'password')
+             ->type('mypassword', 'password_confirmation')
+             ->press('注册')
+             ->seePageIs('/register')
+             ->see('该邮箱已被占用');
     }
 }
 
