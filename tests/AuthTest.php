@@ -6,6 +6,8 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class RegisterTest extends TestCase
 {
+
+    use DatabaseMigrations;
     /**
      * visit register page
      *
@@ -37,7 +39,7 @@ class RegisterTest extends TestCase
         
         $this->visit('/')
              ->press('注销');
-        
+
         $this->visit('/register')
              ->type('Rokic_is_not_weirdo', 'name')
              ->type('kingdeadfish@qq.com', 'email')
@@ -45,7 +47,7 @@ class RegisterTest extends TestCase
              ->type('mypassword', 'password_confirmation')
              ->press('注册')
              ->seePageIs('/register')
-             ->see('该邮箱已被注册');
+             ->see('邮箱已经被人使用了');
     }
 }
 
