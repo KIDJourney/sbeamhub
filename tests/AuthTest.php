@@ -35,8 +35,7 @@ class RegisterTest extends TestCase
              ->seePageIs('/')
              ->see('Rokic_is_weirdo');
         
-        $this->visit('/')
-             ->press('注销');
+        $this->visit('/logout')
         
         $this->visit('/register')
              ->type('Rokic_is_not_weirdo', 'name')
