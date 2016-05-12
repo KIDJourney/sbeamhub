@@ -6,8 +6,10 @@ php:
 before_script:
     - "mysql -e 'create database `steamhub`;'"
     - composer install -n --prefer-source
+    - composer require satooshi/php-coveralls
     - "php artisan key:generate"
     - php artisan migrate --seed -n
 
 after_success:
+    - travis_retry php vendor/bin/coveralls
     - "bash <(curl -s https://codecov.io/bash)"
