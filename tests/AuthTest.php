@@ -11,7 +11,7 @@ class RegisterTest extends TestCase
      *
      * @return void
      */
-    public function visitRegisterPage()
+    public function testPageAvailability()
     {
         $this->visit('/register')
              ->see('注册')
@@ -24,7 +24,7 @@ class RegisterTest extends TestCase
      *
      * @return void
      */
-    public function tryRegister()
+    public function testRegister()
     {
         $this->visit('/register')
              ->type('Rokic_is_weirdo', 'name')
@@ -56,7 +56,7 @@ class LoginTest extends TestCase
      *
      * @return void
      */
-    public function visitLoginPage()
+    public function testPageAvailability()
     {
         $this->visit('/login')
              ->see('登录')
