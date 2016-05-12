@@ -43,22 +43,33 @@ class AuthController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
+        $message = [
+            'name.required' => '昵称不能为空',
+            'name.max' => '昵称不能超过16个字',
+            'name.unique' => '昵称已经被别人使用了',
+            'email.required' => '邮箱不能为空',
+            'email.email' => '邮箱格式不合法',
+            'email.unique' => '邮箱已经被人使用了',
+            'password.required' => '密码不能为空',
+            'password.min' => '密码不能少于6位',
+            'password.confirmed' => '两次输入的密码不一致'
+        ];
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:16|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-        ]);
+        ], $message);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
