@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -7,7 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class RegisterTest extends TestCase
 {
 
-    use DatabaseMigrations;
+    use DatabaseTransactions;
 
     /**
      * visit register page
@@ -50,19 +51,41 @@ class RegisterTest extends TestCase
              ->type('mypassword', 'password_confirmation')
              ->press('注册')
              ->seePageIs('/register')
-             ->see('昵称过长');
+             ->see('昵称不能超过16个字');
     }
     
     public function testOccupiedEmailAddress()
     {
+        User::insert([
+            'name' => 'TempUser',
+            'email'=> 'rokic@weirdo.com',
+            'password' => 'test'
+        ]);
         $this->visit('/register')
              ->type('Rokic_the_weirdo', 'name')
-             ->type('kingdeadfish@qq.com', 'email')
+             ->type('rokic@weirdo.com', 'email')
              ->type('mypassword', 'password')
              ->type('mypassword', 'password_confirmation')
              ->press('注册')
              ->seePageIs('/register')
-             ->see('该邮箱已被占用');
+             ->see('邮箱已经被人使用了');
+    }
+
+    public function testSameNickName()
+    {
+        User::insert([
+            'name' => 'Rokic_is_weirdo',
+            'email'=> 'TestMail@mail.com',
+            'password' => 'test'
+        ]);
+        $this->visit('/register')
+            ->type('Rokic_is_weirdo', 'name')
+            ->type('rokic_is_rich@weirdo.com', 'email')
+            ->type('mypassword', 'password')
+            ->type('mypassword', 'password_confirmation')
+            ->press('注册')
+            ->seePageIs('/register')
+            ->see('昵称已经被别人使用了');
     }
 }
 
