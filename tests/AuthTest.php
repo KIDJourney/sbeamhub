@@ -8,6 +8,7 @@ class RegisterTest extends TestCase
 {
 
     use DatabaseMigrations;
+
     /**
      * visit register page
      *
@@ -16,9 +17,9 @@ class RegisterTest extends TestCase
     public function testPageAvailability()
     {
         $this->visit('/register')
-             ->see('注册')
-             ->see('邮箱')
-             ->see('密码');
+            ->see('注册')
+            ->see('邮箱')
+            ->see('密码');
     }
 
     /**
@@ -29,25 +30,24 @@ class RegisterTest extends TestCase
     public function testRegister()
     {
         $this->visit('/register')
-             ->type('Rokic_is_weirdo', 'name')
-             ->type('rokic@weirdo.com', 'email')
-             ->type('mypassword', 'password')
-             ->type('mypassword', 'password_confirmation')
-             ->press('注册')
-             ->seePageIs('/')
-             ->see('Rokic_is_weirdo');
-        
-        $this->visit('/')
-             ->press('注销');
+            ->type('Rokic_is_weirdo', 'name')
+            ->type('rokic@weirdo.com', 'email')
+            ->type('mypassword', 'password')
+            ->type('mypassword', 'password_confirmation')
+            ->press('注册')
+            ->seePageIs('/')
+            ->see('Rokic_is_weirdo');
+
+        $this->visit('/logout');
 
         $this->visit('/register')
-             ->type('Rokic_is_not_weirdo', 'name')
-             ->type('kingdeadfish@qq.com', 'email')
-             ->type('mypassword', 'password')
-             ->type('mypassword', 'password_confirmation')
-             ->press('注册')
-             ->seePageIs('/register')
-             ->see('邮箱已经被人使用了');
+            ->type('Rokic_is_not_weirdo', 'name')
+            ->type('kingdeadfish@qq.com', 'email')
+            ->type('mypassword', 'password')
+            ->type('mypassword', 'password_confirmation')
+            ->press('注册')
+            ->seePageIs('/register')
+            ->see('邮箱已经被人使用了');
     }
 }
 
@@ -61,9 +61,9 @@ class LoginTest extends TestCase
     public function testPageAvailability()
     {
         $this->visit('/login')
-             ->see('登录')
-             ->see('邮箱')
-             ->see('密码')
-             ->see('记住我');
+            ->see('登录')
+            ->see('邮箱')
+            ->see('密码')
+            ->see('记住我');
     }
 }
