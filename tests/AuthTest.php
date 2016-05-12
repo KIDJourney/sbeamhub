@@ -28,11 +28,24 @@ class RegisterTest extends TestCase
     {
         $this->visit('/register')
              ->type('Rokic_is_weirdo', 'name')
+             ->type('rokic@weirdo.com', 'email')
+             ->type('mypassword', 'password')
+             ->type('mypassword', 'password_confirmation')
+             ->press('注册')
+             ->IsPage('/')
+             ->see('Rokic_is_weirdo');
+        
+        $this->visit('/')
+             ->press('注销');
+        
+        $this->visit('/register')
+             ->type('Rokic_is_not_weirdo', 'name')
              ->type('kingdeadfish@qq.com', 'email')
              ->type('mypassword', 'password')
              ->type('mypassword', 'password_confirmation')
              ->press('注册')
-             ->see('Rokic_is_weirdo');
+             ->IsPage('/register')
+             ->see('该邮箱已被注册');
     }
 }
 
