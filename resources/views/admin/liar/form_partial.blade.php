@@ -1,21 +1,21 @@
 @if(isset($liar))
-{!! Form::model($liar, ['method'=>'PATCH','action'=>array('Admin\LiarController@update', $liar->id)]) !!}
-    {!! Form::text('tiebaid') !!}<br>
-    {!! Form::text('steamnick') !!}<br>
-    {!! Form::text('steamid') !!}<br>
-    {!! Form::text('taobaoid') !!}<br>
-    {!! Form::text('alipayaccount') !!}<br>
-    {!! Form::text('reason') !!}<br>
+    {!! Form::model($liar, ['method'=>'PATCH','action'=>array('Admin\LiarController@update', $liar->id)]) !!}
+    Tiebaid:{!! Form::text('tiebaid') !!}<br>
+    Steamnick:{!! Form::text('steamnick') !!}<br>
+    Steamid:{!! Form::text('steamid') !!}<br>
+    TaobaoId:{!! Form::text('taobaoid') !!}<br>
+    AlipayAccount{!! Form::text('alipayaccount') !!}<br>
+    Reason:{!! Form::text('reason') !!}<br>
     {!! Form::submit() !!}
-{!! Form::close() !!}
+    {!! Form::close() !!}
 @else
-{!! Form::open(['method'=>'POST','action'=>array('Admin\LiarController@store')]) !!}
-    {!! Form::text('tiebaid') !!}<br>
-    {!! Form::text('steamnick') !!}<br>
-    {!! Form::text('steamid') !!}<br>
-    {!! Form::text('taobaoid') !!}<br>
-    {!! Form::text('alipayaccount') !!}<br>
-    {!! Form::text('reason') !!}<br>
+    {!! Form::open(['method'=>'POST','action'=>array('Admin\LiarController@store')]) !!}
+    Tiebaid:{!! Form::text('tiebaid') !!}<br>
+    Steamnick:{!! Form::text('steamnick') !!}<br>
+    Steamid:{!! Form::text('steamid') !!}<br>
+    TaobaoId:{!! Form::text('taobaoid') !!}<br>
+    AlipayAccount{!! Form::text('alipayaccount') !!}<br>
+    Reason:{!! Form::text('reason') !!}<br>
     {!! Form::submit() !!}
-{!! Form::close() !!}
+    {!! Form::close() !!}
 @endif
