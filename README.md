@@ -1,6 +1,7 @@
 # sbeamhub 
 
 [![Build Status](https://travis-ci.org/KIDJourney/sbeamhub.svg?branch=master)](https://travis-ci.org/KIDJourney/sbeamhub)
+[![Coverage Status](https://coveralls.io/repos/github/KIDJourney/sbeamhub/badge.svg?branch=master)](https://coveralls.io/github/KIDJourney/sbeamhub?branch=master)
 
 Your Cute steam hub !
 

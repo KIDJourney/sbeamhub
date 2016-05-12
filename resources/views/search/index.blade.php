@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title','SteamHub')
+
 @section('content')
 <div class="container">
     <img class="center-block" src="{{ URL::asset('image/SteamHub.png') }}">
@@ -8,7 +10,7 @@
         <div class="input-group">
             {!! Form::text('key', '', array('class'=>'form-control')) !!}
             <span class="input-group-btn">
-                {!! Form::submit('嗖嗖嗖', array('class'=>'btn btn-default')) !!}
+            {!! Form::submit('嗖嗖嗖', array('class'=>'btn btn-default')) !!}
             </span>
         </div>
         {!! Form::close() !!}
