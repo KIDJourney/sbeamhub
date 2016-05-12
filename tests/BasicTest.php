@@ -17,23 +17,3 @@ class IndexTest extends TestCase
              ->see('SteamHub');
     }
 }
-
-class AuthTest extends TestCase
-{
-    /**
-     * Register functional test.
-     *
-     * @return void.
-     */
-    public function testRegister()
-    {
-        $this->visit('/register')
-             ->type('Rokic_is_weirdo', 'name')
-             ->type('kingdeadfish@qq.com', 'email')
-             ->type('mypassword', 'password')
-             ->type('mypassword', 'password_confirmation')
-             ->press('注册')
-             ->see('Rokic_is_weirdo');
-    }
-    
-}
