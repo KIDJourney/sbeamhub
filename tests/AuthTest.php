@@ -32,7 +32,7 @@ class RegisterTest extends TestCase
              ->type('mypassword', 'password')
              ->type('mypassword', 'password_confirmation')
              ->press('注册')
-             ->IsPage('/')
+             ->seePageIs('/')
              ->see('Rokic_is_weirdo');
         
         $this->visit('/')
@@ -44,7 +44,7 @@ class RegisterTest extends TestCase
              ->type('mypassword', 'password')
              ->type('mypassword', 'password_confirmation')
              ->press('注册')
-             ->IsPage('/register')
+             ->seePageIs('/register')
              ->see('该邮箱已被注册');
     }
 }
