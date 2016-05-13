@@ -10,12 +10,13 @@ Your Cute steam hub !
 
 - [X] Search function
 - [X] Donator List
-- <del>[X] Liar manage</del>
-- <del>[X] Donator Manage</del>
+- <del> [X] Liar manage</del>
+- <del> [X] Donator Manage</del>
 - [ ] "Create" button on admin panel
 - [ ] Search function for administration
 - [ ] Make buttons in admin editor working
 - [ ] Details on delete confirmation template
+- [ ] New views for admin
 - [ ] New Test cases
 - [ ] on sale List (crawler)
 - [ ] Liar report
