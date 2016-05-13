@@ -27,13 +27,25 @@ class Parser:
     def __init__(self, content):
         self.soup = BeautifulSoup(content)
         self.price_re = re.compile(r'¥(\d+\.\d+)')
+        self.discoutn_re = re.compile(r'-\d+%')
+        self.rate_re = re.compile(r'\d+%')
 
     def parse(self):
         items = self.soup.findAll('tr', {'class': 'app appimg'})
-        return [{'name': self._get_name(item),
-                 'price': self._get_price(item),
-                 'discount': self._get_discount(item),
-                 'app_id': self._get_app_id(item)} for item in items]
+        data = []
+        for item in items:
+            try:
+                data.append(
+                    {'name': self._get_name(item),
+                     'price': self._get_price(item),
+                     'discount': self._get_discount(item),
+                     'app_id': self._get_app_id(item),
+                     'rating': self._get_rating(item)})
+            except Exception:
+                return item
+
+        return data
+
 
     def _get_name(self, item_soup):
         return item_soup.find('a', {'class': 'b'}).text
@@ -41,15 +53,17 @@ class Parser:
     def _get_price(self, item_soup):
         return float(self.price_re.findall(item_soup.text)[0])
 
-    # tobe fixed
     def _get_discount(self, item_soup):
-        return item_soup.find('td', {'class': 'price-discount-major'}).text
+        return self.discoutn_re.findall(item_soup.text)[0]
 
     def _get_app_id(self, item_soup):
         return item_soup.find('a', {'class': 'b'}).get('href').split('/')[-2]
+
+    def _get_rating(self, item_soup):
+        return self.rate_re.findall(item_soup.text)[0]
 
 if __name__ == "__main__":
     sales = SaleRequester()
     content = sales.get_sale_page()
     p = Parser(content)
-    print(p.parse())
+    # print(p.parse())
