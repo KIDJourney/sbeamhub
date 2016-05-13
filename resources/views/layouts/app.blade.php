@@ -69,6 +69,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/setting') }}"><i class="fa fa-btn fa-cog"></i>设置</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>注销</a></li>
                             </ul>
                         </li>
