@@ -20,11 +20,19 @@ Route::resource('/user', 'UserController', ['only' => ['index', 'show']]);
 
 
 Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
-    Route::get('/', function () {
-        return "This is admin page";
-    });
-    Route::resource('liar', 'LiarController');
-    Route::resource('donator', 'DonatorController');
+    //TODO 1: more common solution for tabs
+    Route::get('/', "AdminController@index");
+    Route::get('/user', "AdminController@user_administration");
+    Route::get('/blacklist', "AdminController@blacklist_administration");
+    Route::get('/statistic', "AdminController@statistic");
+    
+    //TODO 2: seperate model controller out
+    Route::get('/model/{model}', "AdminController@model");
+    Route::get('/create/{model}', "AdminController@model_display");
+    Route::get('/editor/{model}/{id}', "AdminController@model_display");
+    Route::post('/editor/{model}', "AdminController@model_edit");
+    Route::get('/delete/{model}/{id}', "AdminController@model_delete_confirmation");
+    Route::post('/delete/{model}/{id}', "AdminController@model_delete");
 });
 
 Route::auth();
