@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/KIDJourney/sbeamhub.svg?branch=master)](https://travis-ci.org/KIDJourney/sbeamhub)
 [![Coverage Status](https://coveralls.io/repos/github/KIDJourney/sbeamhub/badge.svg?branch=master)](https://coveralls.io/github/KIDJourney/sbeamhub?branch=master)
-<img src="http://forthebadge.com/images/badges/built-with-love.svg" href="http://forthebadge.com" height="21px" style="border-radius:3px;" >
+<img src="http://forthebadge.com/images/badges/built-with-love.svg" href="http://forthebadge.com" height="21px" style="border-radius:3px;width:100;" >
 
 
 Your Cute steam hub !
