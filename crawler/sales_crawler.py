@@ -54,7 +54,7 @@ class Parser:
         return float(self.price_re.findall(item_soup.text)[0])
 
     def _get_discount(self, item_soup):
-        return self.discoutn_re.findall(item_soup.text)[0]
+        return int(self.discoutn_re.findall(item_soup.text)[0][1:-1])
 
     def _get_app_id(self, item_soup):
         return item_soup.find('a', {'class': 'b'}).get('href').split('/')[-2]
@@ -66,4 +66,4 @@ if __name__ == "__main__":
     sales = SaleRequester()
     content = sales.get_sale_page()
     p = Parser(content)
-    # print(p.parse())
+    print(p.parse())
