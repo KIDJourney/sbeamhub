@@ -1,8 +1,24 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+import pymysql
+
 
 STEAMDB_SALE_URL = "https://steamdb.info/sales/?merged=true&cc=cn"
+
+class Store:
+    def __init__(self):
+        config_file = '.env'
+        self.connector = pymysql.connect(
+            host='local'
+        )
+
+    def _parse(self):
+        config = filter(lambda x:len(x) != 0 ,open(self.config_file).read().split('\n'))
+        config = {c[:c.find('=')] : c[c.find('=')+1:] for c in config}
+        config = {key:config[key] for key in ['DB_DATABASE','DB_HOST','DB_PASSWORD','DB_PORT','DB_USERNAME']}
+
+        self.config = config
 
 
 class SaleRequester:
