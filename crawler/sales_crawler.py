@@ -1,8 +1,24 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+import pymysql
+
 
 STEAMDB_SALE_URL = "https://steamdb.info/sales/?merged=true&cc=cn"
+
+class Store:
+    def __init__(self):
+        config_file = '.env'
+        self.connector = pymysql.connect(
+            host='local'
+        )
+
+    def _parse(self):
+        config = filter(lambda x:len(x) != 0 ,open(self.config_file).read().split('\n'))
+        config = {c[:c.find('=')] : c[c.find('=')+1:] for c in config}
+        config = {key:config[key] for key in ['DB_DATABASE','DB_HOST','DB_PASSWORD','DB_PORT','DB_USERNAME']}
+
+        self.config = config
 
 
 class SaleRequester:
@@ -54,7 +70,7 @@ class Parser:
         return float(self.price_re.findall(item_soup.text)[0])
 
     def _get_discount(self, item_soup):
-        return self.discoutn_re.findall(item_soup.text)[0]
+        return int(self.discoutn_re.findall(item_soup.text)[0][1:-1])
 
     def _get_app_id(self, item_soup):
         return item_soup.find('a', {'class': 'b'}).get('href').split('/')[-2]
@@ -66,4 +82,4 @@ if __name__ == "__main__":
     sales = SaleRequester()
     content = sales.get_sale_page()
     p = Parser(content)
-    # print(p.parse())
+    print(p.parse())
