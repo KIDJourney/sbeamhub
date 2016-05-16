@@ -39,8 +39,7 @@ Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => 'admi
 });
 
 Route::group(['prefix' => 'api' ], function(){
-    Route::get('/home', 'UserController@index');
-    Route::get('/setting','UserController@setting');
+    //
 });
 
 Route::auth();
