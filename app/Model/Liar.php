@@ -29,6 +29,9 @@ use DB;
  * @method static \Illuminate\Database\Query\Builder|\App\Model\Liar whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Model\Liar whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $deleted_at
+ * @property-read \App\Model\User $addBy
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\Liar whereDeletedAt($value)
  */
 class Liar extends Model
 {
