@@ -20,6 +20,7 @@ Route::get('/sale', 'SaleController@index');
 Route::group(['middleware'=>'auth', 'prefix' => 'my' ], function(){
     Route::get('/home', 'UserController@index');
     Route::get('/setting','UserController@setting');
+}
 
 Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
     //TODO 1: more common solution for tabs
