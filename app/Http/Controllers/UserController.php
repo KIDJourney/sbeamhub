@@ -22,6 +22,12 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $user->update($request->all());
+
+        $message = "Just a Message";
+
+        \Session::flash('message',$message);
+
+        return view('user.profile',['user'=>$user]);
     }
 
 }
