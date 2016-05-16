@@ -85,7 +85,7 @@ class AdminController extends Controller
     
     public function model_display($model, $id)
     {
-        $obj = DB::table($model.'s')->where('id', $id)->first
+        $obj = DB::table($model.'s')->where('id', $id)->first();
         $obj->model = $model;
         return view('admin.app', ['tabs'=>$this->tabs(),'view'=>'admin.model.display', 'obj'=>$obj]);
     }
