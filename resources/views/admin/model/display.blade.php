@@ -10,7 +10,7 @@
     @endforeach
         <div class="col-md-12">
         <input type="submit" class="btn btn-default" href="#" value="提交">
-        <a class="btn btn-danger" href="{{ URL::action("AdminController@model_delete_confirmation",['id'=>$obj->id,'model'=>$obj->model]) }}">删除</a>
+        <a class="btn btn-danger" href="{{ URL::action("Admin\AdminController@model_delete_confirmation",['id'=>$obj->id,'model'=>$obj->model]) }}">删除</a>
         </div>
     </form>
     </div>
