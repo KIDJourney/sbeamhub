@@ -18,7 +18,7 @@ class SaleSeed extends Seeder
         $data = [];
         foreach (range(1, 100) as $index) {
             $data[] = [
-                'app_id' => $faker->uuid,
+                'app_id' => $faker->name,
                 'name' => $faker->name,
                 'discount' => rand(10, 100),
                 'price' => rand(0, 100)
