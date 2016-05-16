@@ -1,85 +1,12 @@
-import requests
-from bs4 import BeautifulSoup
-import re
-import pymysql
-
-
-STEAMDB_SALE_URL = "https://steamdb.info/sales/?merged=true&cc=cn"
-
-class Store:
-    def __init__(self):
-        config_file = '.env'
-        self.connector = pymysql.connect(
-            host='local'
-        )
-
-    def _parse(self):
-        config = filter(lambda x:len(x) != 0 ,open(self.config_file).read().split('\n'))
-        config = {c[:c.find('=')] : c[c.find('=')+1:] for c in config}
-        config = {key:config[key] for key in ['DB_DATABASE','DB_HOST','DB_PASSWORD','DB_PORT','DB_USERNAME']}
-
-        self.config = config
-
-
-class SaleRequester:
-    def __init__(self):
-        self.fake_header = {
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Charset': 'UTF-8,*;q=0.5',
-            'Accept-Encoding': 'gzip,deflate,sdch',
-            'Accept-Language': 'en-US,en;q=0.8',
-            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:13.0) Gecko/20100101 Firefox/13.0'
-        }
-
-    def get_sale_page(self):
-        try:
-            content = requests.get(STEAMDB_SALE_URL).text
-        except TimeoutError:
-            pass
-        return content
-
-
-class Parser:
-    def __init__(self, content):
-        self.soup = BeautifulSoup(content)
-        self.price_re = re.compile(r'¥(\d+\.\d+)')
-        self.discoutn_re = re.compile(r'-\d+%')
-        self.rate_re = re.compile(r'\d+%')
-
-    def parse(self):
-        items = self.soup.findAll('tr', {'class': 'app appimg'})
-        data = []
-        for item in items:
-            try:
-                data.append(
-                    {'name': self._get_name(item),
-                     'price': self._get_price(item),
-                     'discount': self._get_discount(item),
-                     'app_id': self._get_app_id(item),
-                     'rating': self._get_rating(item)})
-            except Exception:
-                return item
-
-        return data
-
-
-    def _get_name(self, item_soup):
-        return item_soup.find('a', {'class': 'b'}).text
-
-    def _get_price(self, item_soup):
-        return float(self.price_re.findall(item_soup.text)[0])
-
-    def _get_discount(self, item_soup):
-        return int(self.discoutn_re.findall(item_soup.text)[0][1:-1])
-
-    def _get_app_id(self, item_soup):
-        return item_soup.find('a', {'class': 'b'}).get('href').split('/')[-2]
-
-    def _get_rating(self, item_soup):
-        return self.rate_re.findall(item_soup.text)[0]
+import parser
+import requester
+import storer
 
 if __name__ == "__main__":
-    sales = SaleRequester()
+    sales = requester.SaleRequester()
     content = sales.get_sale_page()
-    p = Parser(content)
-    print(p.parse())
+    p = parser.Parser(content)
+    sales = p.parse()
+    print(sales)
+    s = storer.Storer()
+    s.store()

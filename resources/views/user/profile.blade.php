@@ -10,25 +10,23 @@
             <div class="text-center">
                 <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
                 <h6>上传新头像</h6>
-                <input type="file" class="form-control">
+                {!! Form::file('image',['class'=>'form-control']) !!}
             </div>
         </div>
         <div class="col-md-9 personal-info">
+            @if(Session::has('message'))
             <div class="alert alert-info alert-dismissable">
                 <a class="panel-close close" data-dismiss="alert">×</a>
-                @if(isset($flashData))
                 <i class="fa fa-coffee"></i>
-                This is an <strong>.alert</strong>. Use this to show important messages to the user.
-                @endif
+                {!! Session::get('message') !!}
             </div>
+            @endif
             <h3>个人信息</h3>
-            {!! Form::model($user,['method'=>'POST','url'=>'/setting','class'=>'form-horizontal','role'=>'form']) !!}
-            {{--<form class="form-horizontal" role="form">--}}
+            {!! Form::model($user,['method'=>'PATCH','url'=>'/setting','class'=>'form-horizontal','role'=>'form']) !!}
                 <div class="form-group">
                     <label class="col-lg-3 control-label">First name:</label>
                     <div class="col-lg-8">
                         {!! Form::text('name', NULL , ['class'=>'form-control']) !!}
-                        {{--<input class="form-control" type="text" value="Jane">--}}
                     </div>
                 </div>
                 <div class="form-group">
@@ -41,13 +39,12 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label"></label>
                     <div class="col-md-8">
-                        <input type="submit" class="btn btn-primary" value="Save Changes">
+                        <input type="submit" class="btn btn-primary" value="保存">
                         <span></span>
-                        <input type="reset" class="btn btn-default" value="Cancel">
+                        <input type="reset" class="btn btn-default" value="取消">
                     </div>
                 </div>
             {!! Form::close() !!}
-            {{--</form>--}}
         </div>
     </div>
 </div>
