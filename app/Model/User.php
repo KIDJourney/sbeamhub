@@ -23,6 +23,19 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Query\Builder|\App\Model\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Model\User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $steam_id
+ * @property string $img_url
+ * @property boolean $is_verified
+ * @property boolean $is_admin
+ * @property boolean $is_banned
+ * @property string $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Model\Liar[] $reportedLiar
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\User whereSteamId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\User whereImgUrl($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\User whereIsVerified($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\User whereIsAdmin($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\User whereIsBanned($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\User whereDeletedAt($value)
  */
 class User extends Authenticatable
 {
@@ -32,7 +45,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'img_url'
+        'email', 'password', 'img_url'
     ];
 
     /**

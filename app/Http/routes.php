@@ -10,13 +10,17 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
 Route::get('/', "SearchController@index");
 Route::get('/search/{key?}', 'SearchController@show');
 
 Route::get('/donator', "Admin\DonatorController@index");
 Route::get('/home', 'HomeController@index');
+Route::get('/sale', 'SaleController@index');
 
-Route::resource('/user', 'UserController', ['only' => ['index', 'show']]);
+Route::group(['middleware'=>'auth'], function(){
+    Route::get('/setting','UserController@index');
+});
 
 
 Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
@@ -25,7 +29,7 @@ Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => 'admi
     Route::get('/user', "AdminController@user_administration");
     Route::get('/blacklist', "AdminController@blacklist_administration");
     Route::get('/statistic', "AdminController@statistic");
-    
+
     //TODO 2: seperate model controller out
     Route::get('/model/{model}', "AdminController@model");
     Route::get('/create/{model}', "AdminController@model_display");
