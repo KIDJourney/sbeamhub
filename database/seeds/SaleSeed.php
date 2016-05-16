@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\Sale;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
@@ -17,9 +18,13 @@ class SaleSeed extends Seeder
         $data = [];
         foreach (range(1,100) as $index){
             $data[] = [
-                'app_id'=>$faker->in
-            ]
+                'app_id'=>$faker->uuid,
+                'name' => $faker->domainName,
+                'discount' => $faker->numberBetween(0,100),
+                'price' => $faker->numberBetween(0,300)
+            ];
         }
 
+        Sale::create($data);
     }
 }

@@ -17,7 +17,7 @@ class CreateSalesTable extends Migration
             $table->string('app_id',10);
             $table->string('name',64);
             $table->integer('discount');
-            $table->integer('price');
+            $table->integer('price');  // This is price after discount
             $table->timestamps();
         });
     }
