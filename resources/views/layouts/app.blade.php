@@ -46,7 +46,7 @@
                     <li class=""><a href="#">优惠速递</a></li>
                     <li class=""><a href="#">游戏社群</a></li>
                     <li class=""><a href="{{ url('/donation') }}">支持我们</a></li>
-                    @if (Auth::user()->is_admin)
+                    @if (!Auth::guest()&&Auth::user()->is_admin)
                     <li class=""><a href="{{ url('/admin') }}">汪汪汪</a></li>
                     @endif
                 </ul>
