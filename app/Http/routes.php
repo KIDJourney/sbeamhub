@@ -38,4 +38,9 @@ Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => 'admi
     Route::post('/delete/{model}/{id}', "AdminController@model_delete");
 });
 
+Route::group(['prefix' => 'api' ], function(){
+    Route::get('/home', 'UserController@index');
+    Route::get('/setting','UserController@setting');
+});
+
 Route::auth();
