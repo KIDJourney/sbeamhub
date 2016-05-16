@@ -20,6 +20,7 @@ Route::get('/sale', 'SaleController@index');
 
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/setting','UserController@index');
+    Route::patch('/setting','UserController@update');
 });
 
 
