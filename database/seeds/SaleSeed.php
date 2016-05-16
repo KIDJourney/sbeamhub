@@ -16,12 +16,12 @@ class SaleSeed extends Seeder
         //
         $faker = Faker::create();
         $data = [];
-        foreach (range(1,100) as $index){
+        foreach (range(1, 100) as $index) {
             $data[] = [
-                'app_id'=>$faker->uuid,
+                'app_id' => $faker->uuid,
                 'name' => $faker->name,
-                'discount' => $faker->randomNumber(),
-                'price' => $faker->randomNumber()
+                'discount' => rand(10, 100),
+                'price' => rand(0, 100)
             ];
         }
 
