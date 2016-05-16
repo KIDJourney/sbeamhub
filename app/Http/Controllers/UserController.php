@@ -10,9 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    //
-
     public function index()
+    {
+        return view('home');
+    }
+
+    public function setting()
     {
         $user = Auth::user();
         return view('user.profile',['user'=>$user]);

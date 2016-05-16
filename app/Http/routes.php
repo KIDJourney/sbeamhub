@@ -15,11 +15,11 @@ Route::get('/', "SearchController@index");
 Route::get('/search/{key?}', 'SearchController@show');
 
 Route::get('/donator', "Admin\DonatorController@index");
-Route::get('/home', 'HomeController@index');
 Route::get('/sale', 'SaleController@index');
 
-Route::group(['middleware'=>'auth'], function(){
-    Route::get('/setting','UserController@index');
+Route::group(['middleware'=>'auth', 'prefix' => 'my' ], function(){
+    Route::get('/home', 'UserController@index');
+    Route::get('/setting','UserController@setting');
 });
 
 
