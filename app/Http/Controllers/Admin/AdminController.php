@@ -12,9 +12,9 @@ use App\Http\Controllers\Controller;
 
 class Tab{
     public $name, $url, $css_class;
-    public function __construct($name, $url='#', $css_class='')
+    public function __construct($title, $url='#', $css_class='')
     {
-        $this->name = $name;
+        $this->name = $title;
         $this->url = $url;
         $this->css_class = $css_class;
     }
@@ -91,7 +91,8 @@ class AdminController extends Controller
     
     public function model_delete_confirmation($model, $id)
     {
-        return view('admin.app', ['tabs'=>$this->tabs(),'view'=>'admin.model.delete']);
+        $obj = DB::table($model.'s')->where('id', $id)->first();
+        return view('admin.app', ['tabs'=>$this->tabs(),'view'=>'admin.model.delete', 'obj'=>$obj]);
     }
     
     public function model_delete($model, $id)
