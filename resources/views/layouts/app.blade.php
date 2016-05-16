@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
     <!-- Styles -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     <style>
@@ -43,7 +43,8 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="{{ url('/') }}">主页</a></li>
                     <li class=""><a href="#">交易查询</a></li>
-                    <li class=""><a href="#">游戏推荐</a></li>
+                    <li class=""><a href="#">优惠速递</a></li>
+                    <li class=""><a href="#">游戏社群</a></li>
                     <li class=""><a href="{{ url('/donation') }}">支持我们</a></li>
                 </ul>
 
@@ -69,6 +70,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/home') }}"><i class="fa fa-btn fa-home"></i>个人中心</a></li>
                                 <li><a href="{{ url('/setting') }}"><i class="fa fa-btn fa-cog"></i>设置</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>注销</a></li>
                             </ul>
@@ -82,8 +84,8 @@
     @yield('content')
 
     <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 
     @yield('script')
