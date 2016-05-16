@@ -19,7 +19,7 @@ class SaleSeed extends Seeder
         foreach (range(1,100) as $index){
             $data[] = [
                 'app_id'=>$faker->uuid,
-                'name' => $faker->domainName,
+                'name' => $faker->name,
                 'discount' => $faker->numberBetween(0,100),
                 'price' => $faker->numberBetween(0,300)
             ];
