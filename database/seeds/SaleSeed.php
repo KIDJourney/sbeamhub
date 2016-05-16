@@ -20,8 +20,8 @@ class SaleSeed extends Seeder
             $data[] = [
                 'app_id'=>$faker->uuid,
                 'name' => $faker->name,
-                'discount' => $faker->numberBetween(0,100),
-                'price' => $faker->numberBetween(0,300)
+                'discount' => $faker->randomNumber(),
+                'price' => $faker->randomNumber()
             ];
         }
 
