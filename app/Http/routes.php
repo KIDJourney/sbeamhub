@@ -40,6 +40,7 @@ Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => 'admi
 
 Route::group(['prefix' => 'api' ], function(){
     //
+    Route::get('/recentSearch','ApiController@recentSearch');
 });
 
 Route::auth();
