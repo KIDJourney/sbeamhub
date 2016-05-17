@@ -105,3 +105,15 @@ class LoginTest extends TestCase
             ->see('记住我');
     }
 }
+
+class LogoutTest extends TestCase
+{
+    public function testLogOut()
+    {
+        $user = User::find(1);
+        $this->actingAs($user)
+             ->visit('/logout')
+             ->seePageIs('/')
+             ->see('登录');
+    }
+}
