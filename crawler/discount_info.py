@@ -14,21 +14,24 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:13.0) Gecko/20100101 Firefox/13.0'
 }
 
-r = requests.get(STEAMDB_SALE_URL, header=headers)
+r = requests.get(STEAMDB_SALE_URL, headers=headers)
 
 content = r.content.decode().replace('\n', '')
+content = open('test.html','r')
 jar = BeautifulSoup(content, 'lxml').tbody
 sweets = ['name', 'discount', 'price', 'rating']
-box = []#空箱子
-for cookies in jar:#拿出罐子里的曲奇饼
+box = []
+for cookies in jar:
     try:
-        bottle = {'id':cookies['data-appid'], 'type':'game'}#装红酒
+        bottle = {'id':cookies['data-appid'], 'type':'game'}
     except KeyError:
-        bottle = {'id':cookies['data-subid'], 'type':'package'}#或者装白酒
+        bottle = {'id':cookies['data-subid'], 'type':'package'}
     cast = lambda magic: None if not magic else magic.string if magic.string else cast(magic.findChild())
-    flour = cookies.findChildren('td')#揉揉面粉
-    biscuits = [cast(i) for i in flour[2:5] + [flour[6]]]#做点小饼干
-    bottle.update(zip(sweets, biscuits))#每瓶酒附赠点零食
-    box.append(bottle) #装箱
+    flour = cookies.findChildren('td')
+    print(flour)
+    biscuits = [cast(i) for i in flour[2:5] + [flour[6]]]
+    bottle.update(zip(sweets, biscuits))
+    box.append(bottle) 
 
-request.post(API, json.dumps(box))
+
+print(box)

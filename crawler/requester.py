@@ -15,7 +15,7 @@ class SaleRequester:
 
     def get_sale_page(self):
         try:
-            content = requests.get(STEAMDB_SALE_URL).text
+            content = requests.get(STEAMDB_SALE_URL,headers=self.fake_header).text
         except TimeoutError:
             pass
         return content

@@ -9,4 +9,4 @@ if __name__ == "__main__":
     sales = p.parse()
     print(sales)
     s = storer.Storer()
-    s.store()
+    s.store(sales)

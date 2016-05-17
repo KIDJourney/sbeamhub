@@ -51,6 +51,7 @@ class Storer:
 
 if __name__ == "__main__":
     data = [{'app_id': '372390', 'price': 115, 'rating': 16,
+             'name': 'D3DGear - Game Recording and Streaming Software', 'discount': 16},{'app_id': '372390', 'price': 115, 'rating': 16,
              'name': 'D3DGear - Game Recording and Streaming Software', 'discount': 16}]
     s = Storer()
     s.store(data)

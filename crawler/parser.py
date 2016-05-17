@@ -51,7 +51,7 @@ class Parser:
     def _get_price(self, item_soup):
         price = self.price_re.findall(item_soup.text)
         if price:
-            return int(price[0])
+            return int(float(price[0]))
         else:
             return None
 
@@ -80,4 +80,4 @@ class Parser:
 
 if __name__ == "__main__":
     p = Parser(open('test.html').read())
-    print(p.parse())
+    # print(p.parse())
