@@ -12,7 +12,12 @@ class ApiController extends Controller
     //
     public function recentSearch()
     {
-        return RecentSearch::Frequent()->items();
+        $searchs = RecentSearch::Frequent()->items();
+        $content = [];
+        foreach ($searchs as $search){
+            $content[] = $search['content'];
+        }
+        return $content;
     }
 
 }
