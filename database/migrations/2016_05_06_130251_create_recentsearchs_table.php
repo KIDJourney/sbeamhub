@@ -12,7 +12,7 @@ class CreateRecentsearchsTable extends Migration
      */
     public function up()
     {
-        Schema::create('recentsearches', function (Blueprint $table) {
+        Schema::create('recent_searches', function (Blueprint $table) {
             $table->increments('id');
             $table->string('content');
             $table->integer('rate');
