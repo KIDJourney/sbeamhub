@@ -27,6 +27,6 @@ class CreateRecentsearchsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('recentsearches');
+        Schema::drop('recent_searches');
     }
 }
